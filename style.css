@@ -1,4 +1,4 @@
-html, body, h4 {
+html, body, h4, h3 {
     margin: 0;
     padding: 0;
 }
@@ -7,7 +7,7 @@ canvas {
     display: block;
 }
   
-.center {
+main, footer {
     padding: 10px;
 }
 

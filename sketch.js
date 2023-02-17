@@ -101,7 +101,7 @@ function loadOverlay(event) {
     
     enableOverlay = false;
     setTimeout(() => {
-      let overlay = new Image();//document.getElementById('overlay-img');
+      let overlay = new Image();
       overlay.src = reader.result;
       document.getElementById("hidden").appendChild(overlay);
       let ratio = Math.min(canvasSize.x / overlay.width, canvasSize.y / overlay.height);
