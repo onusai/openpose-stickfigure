@@ -12,13 +12,13 @@
       <h3>Openpose Stickman</h3>
       <p>Click and drag the joints to pose the stickman</p>
       <label for="iwidth">Width:</label>
-      <input type="text" id="iwidth" name="iwidth" value="512"><br><br>
+      <input type="text" id="iwidth" name="iwidth" value="512" autocomplete=off><br><br>
       <label for="iheight">Height:</label>
-      <input type="text" id="iheight" name="iheight" value="512"><br><br>
+      <input type="text" id="iheight" name="iheight" value="512" autocomplete=off><br><br>
       <input type="submit" value="Resize / Reset"  onclick="reloadApp()" style="margin-bottom: 10px">
       <div class="overlay-controls">
         <h4>Overlay Image</h4>
-        <input type="file" accept="image/*" onchange="loadOverlay(event)">
+        <input type="file" accept="image/*" autocomplete=off onchange="loadOverlay(event)">
         <input type="button" value="toggle overlay visibility" onclick="toggleOverlay()" style="width: 140px;">
         <div id="hidden" style="display: none;"></div>
       </div>
