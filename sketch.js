@@ -80,8 +80,6 @@ function draw() {
     joint.over();
     joint.show();
   }
-  
-
 }
 
 function mousePressed() {
@@ -100,14 +98,17 @@ function loadOverlay(event) {
   let reader = new FileReader();
   reader.onload = function(){
     overlayImg = loadImage(reader.result);
-    overlayImg = loadImage(reader.result);
     
-    let overlay = new Image();//document.getElementById('overlay-img');
-    overlay.src = reader.result;
-    document.getElementById("hidden").appendChild(overlay);
-    let ratio = Math.min(canvasSize.x / overlay.width, canvasSize.y / overlay.height);
-    overlaySize = { x: overlay.width*ratio, y: overlay.height*ratio };
-    enableOverlay = true;
+    enableOverlay = false;
+    setTimeout(() => {
+      let overlay = new Image();//document.getElementById('overlay-img');
+      overlay.src = reader.result;
+      document.getElementById("hidden").appendChild(overlay);
+      let ratio = Math.min(canvasSize.x / overlay.width, canvasSize.y / overlay.height);
+      overlaySize = { x: overlay.width*ratio, y: overlay.height*ratio };
+      enableOverlay = true;
+    }, "500")
+    
   }
   reader.readAsDataURL(event.target.files[0]);
 }
@@ -115,8 +116,6 @@ function loadOverlay(event) {
 function toggleOverlay() {
   enableOverlay = !enableOverlay;
 }
-
-
 
 function rgba2hex(orig) {
   var a, isPercent,
