@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+
+  </head>
+  <body>
+    <main class="center">
+        <label for="iwidth">Width:</label>
+        <input type="text" id="iwidth" name="iwidth" value="512"><br><br>
+        <label for="iheight">Height:</label>
+        <input type="text" id="iheight" name="iheight" value="512"><br><br>
+        <input type="submit" value="Resize / Reset"  onClick="reloadApp()" style="margin-bottom: 10px"> 
+    </main>
+    <script src="joint.js"></script>
+    <script src="bone.js"></script>
+    <script src="sketch.js"></script>
+  </body>
+</html>
