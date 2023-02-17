@@ -1,4 +1,4 @@
-html, body {
+html, body, h4 {
     margin: 0;
     padding: 0;
 }
@@ -9,4 +9,12 @@ canvas {
   
 .center {
     padding: 10px;
+}
+
+.overlay-controls {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  gap: 10px;
+  margin-bottom: 10px;
 }

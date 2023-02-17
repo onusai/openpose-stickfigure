@@ -1,5 +1,7 @@
-let imageSize = [512, 512];
-//let imageSize = [512, 768];
+let canvasSize = { x: 512, y: 512}
+let overlaySize;
+let overlayImg;
+let enableOverlay = false;
 
 let joints;
 let bones;
@@ -7,12 +9,12 @@ let bones;
 function reloadApp() {
   let width = document.getElementById("iwidth").value;
   let height = document.getElementById("iheight").value;
-  imageSize = [width, height]
+  canvasSize = {x: width, y: height}
   setup()
 }
 
 function setup() {
-  createCanvas(imageSize[0], imageSize[1]);
+  createCanvas(canvasSize.x, canvasSize.y);
   
   joints = {
     "lowerArmR": new Joint(-145, 18, "#aaff00"), 
@@ -36,8 +38,8 @@ function setup() {
   }
   
   for (joint in joints) {
-    joints[joint].x += imageSize[0]/2
-    joints[joint].y += imageSize[1]/2
+    joints[joint].x += canvasSize.x/2
+    joints[joint].y += canvasSize.y/2
   }
   
   bones = {
@@ -63,6 +65,14 @@ function setup() {
 
 function draw() {
   background(0);
+  
+  if (overlayImg && enableOverlay) {
+    let x = (canvasSize.x - overlaySize.x) / 2;
+    let y = (canvasSize.y - overlaySize.y) / 2;
+    tint(255, 127);
+    image(overlayImg, x, y, overlaySize.x, overlaySize.y);
+  }
+  tint(255);
   for (let bone in bones) bones[bone].show();
   for (let joint in joints) {
     joint = joints[joint];
@@ -71,6 +81,7 @@ function draw() {
     joint.show();
   }
   
+
 }
 
 function mousePressed() {
@@ -84,6 +95,28 @@ function mouseReleased() {
     joints[joint].released();
   }
 }
+
+function loadOverlay(event) {
+  let reader = new FileReader();
+  reader.onload = function(){
+    overlayImg = loadImage(reader.result);
+    overlayImg = loadImage(reader.result);
+    
+    let overlay = new Image();//document.getElementById('overlay-img');
+    overlay.src = reader.result;
+    document.getElementById("hidden").appendChild(overlay);
+    let ratio = Math.min(canvasSize.x / overlay.width, canvasSize.y / overlay.height);
+    overlaySize = { x: overlay.width*ratio, y: overlay.height*ratio };
+    enableOverlay = true;
+  }
+  reader.readAsDataURL(event.target.files[0]);
+}
+
+function toggleOverlay() {
+  enableOverlay = !enableOverlay;
+}
+
+
 
 function rgba2hex(orig) {
   var a, isPercent,
