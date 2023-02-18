@@ -20,7 +20,7 @@ let jointDef = {
   "LSide": [16, 9, "#0055ff"],
   "upperLegL": [8, 118, "#0000ff"],
   "lowerLegL": [57, 215, "#5500ff"],
-  "neck": [-15, -130.33333333333334, "#ff5500"],
+  "neck": [-15, -130, "#ff5500"],
   "head": [-10, -168, "#ff0000"],
   "headRSideInner": [-21, -191, "#aa00ff"],
   "headRSideOuter": [-41, -183, "#ff00aa"],
