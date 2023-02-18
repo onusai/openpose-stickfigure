@@ -8,6 +8,7 @@ let bones = {};
 let joints = {};
 
 let hoverInfoElem;
+let offsetSliders = {};
 
 let jointDef = {
   "rWrist": [-191, -100, "#aaff00"],
@@ -57,7 +58,9 @@ function setup() {
   }
 
   createCanvas(canvasSize.x, canvasSize.y);
-  
+
+  Joint.offset = {x: 0, y: 0, z: 0};
+
   for (let joint in jointDef) {
     let j = jointDef[joint];
     joints[joint] = new Joint(j[0], j[1], j[2]);
@@ -71,6 +74,20 @@ function setup() {
   }
 
   hoverInfoElem = document.getElementById("hover-info");
+  offsetSliders.x = document.getElementById("offsetX");
+  offsetSliders.y = document.getElementById("offsetY");
+  offsetSliders.z = document.getElementById("offsetZ");
+
+  offsetSliders.x .min = -canvasSize.x;
+  offsetSliders.x .max = canvasSize.x;
+  offsetSliders.x .value = 0;
+  offsetSliders.y.min = -canvasSize.y;
+  offsetSliders.y.max = canvasSize.y;
+  offsetSliders.y.value = 0;
+  offsetSliders.z.min = -5;
+  offsetSliders.z.max = 5;
+  offsetSliders.z.value = 0;
+  offsetSliders.z.step = 0.1;
 }
 
 function draw() {
@@ -158,4 +175,10 @@ function importPose() {
     joints[joint].y = pose[joint][1] + dim.y;
   }
   e.value = "";
+}
+
+function offsetChanged() {
+  Joint.offset.x = offsetSliders.x.value*1;
+  Joint.offset.y = offsetSliders.y.value*-1;
+  Joint.offset.z = offsetSliders.z.value*1;
 }

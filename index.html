@@ -10,11 +10,11 @@
       <h3>Openpose Stick Figure</h3>
       <p>Click and drag the joints to pose the stick figure</p>
       <div>
-        <label for="iwidth">Width:</label>
+        <label for="iwidth">Width</label>
         <input type="text" id="iwidth" name="iwidth" value="512" autocomplete=off style="max-width: 40px;">
       </div>
       <div>
-        <label for="iheight">Height:</label>
+        <label for="iheight">Height</label>
         <input type="text" id="iheight" name="iheight" value="512" autocomplete=off style="max-width: 40px;">
       </div>
       <input type="submit" value="Resize / Reset"  onclick="setup()">
@@ -25,7 +25,15 @@
       </div>
       <div class="canv">
         <main></main>
-        <span id="hover-info" style="padding-left: 5px"></span>
+        <div class="canv-controls">
+          <p id="hover-info" style="min-height: 1.5em;"></p>
+          <label for="offsetX">Offset X</label>
+          <input id="offsetX" name="offsetX" type="range" min="0" max="0" value="0" autocomplete=off oninput="offsetChanged()">
+          <label for="offsetY">Offset Y</label>
+          <input id="offsetY" name="offsetY" type="range" min="0" max="0" value="0" autocomplete=off oninput="offsetChanged()">
+          <label for="offsetZ">Offset Z</label>
+          <input id="offsetZ" name="offsetZ" type="range" min="0" max="0" value="0" autocomplete=off oninput="offsetChanged()">
+        </div>
       </div>
       
       <h4>Import / Export JSON Pose</h4>

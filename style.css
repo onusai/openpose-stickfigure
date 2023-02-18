@@ -20,3 +20,9 @@ footer {
 .canv {
     display: flex;
 }
+
+.canv-controls {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
