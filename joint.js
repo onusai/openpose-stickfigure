@@ -30,16 +30,16 @@ class Joint {
       if (!this.mirrorJoint) return;
 
       if (Joint.mirrorH && Joint.mirrorV) {
-        this.mirrorJoint.x = Joint.mirrorCenterJoint.x-(this.x - Joint.mirrorCenterJoint.x);
-        this.mirrorJoint.y = Joint.mirrorCenterJoint.y-(this.y - Joint.mirrorCenterJoint.y);
+        this.mirrorJoint._x = Joint.mirrorCenterJoint._x-(this._x - Joint.mirrorCenterJoint._x);
+        this.mirrorJoint._y = Joint.mirrorCenterJoint._y-(this._y - Joint.mirrorCenterJoint._y);
       }
       else if (Joint.mirrorH) {
-        this.mirrorJoint.x = Joint.mirrorCenterJoint.x-(this.x - Joint.mirrorCenterJoint.x);
-        this.mirrorJoint.y = this.y;
+        this.mirrorJoint._x = Joint.mirrorCenterJoint._x-(this._x - Joint.mirrorCenterJoint._x);
+        this.mirrorJoint._y = this._y;
       }
       else if (Joint.mirrorV) {
-        this.mirrorJoint.y = Joint.mirrorCenterJoint.y-(this.y - Joint.mirrorCenterJoint.y);
-        this.mirrorJoint.x = this.x;
+        this.mirrorJoint._y = Joint.mirrorCenterJoint._y-(this._y - Joint.mirrorCenterJoint._y);
+        this.mirrorJoint._x = this._x;
       }
     }
   }

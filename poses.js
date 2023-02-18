@@ -1,0 +1,42 @@
+let poses = {
+    "default": {
+        "rWrist": [-191, -100, "#aaff00", "lWrist"],
+        "rElbow": [-110, -88, "#ffff00", "lElbow"],
+        "rShoulder": [-51, -126, "#ffaa00", "lShoulder"],
+        "rHip": [-50, 8, "#00ffaa", "lHip"],
+        "rKnee": [-40, 113, "#00ffff", "lKnee"],
+        "rAnkle": [-42, 239, "#00aaff", "lAnkle"],
+        "lWrist": [139, -25, "#00ff55", "rWrist"],
+        "lElbow": [66, -60, "#33ff00", "rElbow"],
+        "lShoulder": [22, -126, "#88ff00", "rShoulder"],
+        "lHip": [16, 9, "#0055ff", "rHip"],
+        "lKnee": [8, 118, "#0000ff", "rKnee"],
+        "lAnkle": [57, 215, "#5500ff", "rAnkle"],
+        "upperChest": [-15, -130, "#ff5500", null],
+        "nose": [-10, -168, "#ff0000", null],
+        "rHeadInner": [-21, -191, "#aa00ff", "lHeadInner"],
+        "rHeadOuter": [-41, -183, "#ff00aa", "lHeadOuter"],
+        "lHeadInner": [4, -189, "#ff00ff", "rHeadInner"],
+        "lHeadOuter": [24, -181, "#ff0055", "rHeadOuter"]
+    },
+    "tpose1": {
+        "rWrist":[-184,-90,"#aaff00","lWrist"],
+        "rElbow":[-124,-114,"#ffff00","lElbow"],
+        "rShoulder":[-49,-139,"#ffaa00","lShoulder"],
+        "rHip":[-31,25,"#00ffaa","lHip"],
+        "rKnee":[-31,133,"#00ffff","lKnee"],
+        "rAnkle":[-31,217,"#00aaff","lAnkle"],
+        "lWrist":[184,-90,"#00ff55","rWrist"],
+        "lElbow":[124,-114,"#33ff00","rElbow"],
+        "lShoulder":[49,-139,"#88ff00","rShoulder"],
+        "lHip":[31,25,"#0055ff","rHip"],
+        "lKnee":[31,133,"#0000ff","rKnee"],
+        "lAnkle":[31,217,"#5500ff","rAnkle"],
+        "upperChest":[0,-150,"#ff5500",null],
+        "nose":[0,-184,"#ff0000",null],
+        "rHeadInner":[-9,-195,"#aa00ff","lHeadInner"],
+        "rHeadOuter":[-20,-189,"#ff00aa","lHeadOuter"],
+        "lHeadInner":[9,-195,"#ff00ff","rHeadInner"],
+        "lHeadOuter":[20,-189,"#ff0055","rHeadOuter"]
+    }
+}

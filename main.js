@@ -14,26 +14,7 @@ let jointDiamaterSlider;
 
 let mirrorCenterJoint = "upperChest";
 
-let jointDef = {
-  "rWrist": [-191, -100, "#aaff00", "lWrist"],
-  "rElbow": [-110, -88, "#ffff00", "lElbow"],
-  "rShoulder": [-51, -126, "#ffaa00", "lShoulder"],
-  "rHip": [-50, 8, "#00ffaa", "lHip"],
-  "rKnee": [-40, 113, "#00ffff", "lKnee"],
-  "rAnkle": [-42, 239, "#00aaff", "lAnkle"],
-  "lWrist": [139, -25, "#00ff55", "rWrist"],
-  "lElbow": [66, -60, "#33ff00", "rElbow"],
-  "lShoulder": [22, -126, "#88ff00", "rShoulder"],
-  "lHip": [16, 9, "#0055ff", "rHip"],
-  "lKnee": [8, 118, "#0000ff", "rKnee"],
-  "lAnkle": [57, 215, "#5500ff", "rAnkle"],
-  "upperChest": [-15, -130, "#ff5500", null],
-  "nose": [-10, -168, "#ff0000", null],
-  "rHeadInner": [-21, -191, "#aa00ff", "lHeadInner"],
-  "rHeadOuter": [-41, -183, "#ff00aa", "lHeadOuter"],
-  "lHeadInner": [4, -189, "#ff00ff", "rHeadInner"],
-  "lHeadOuter": [24, -181, "#ff0055", "rHeadOuter"]
-  }
+let jointDef = poses["default"];
 
 let boneDef = {
   "rWrist": ["rWrist", "rElbow", "#999900"],
@@ -161,15 +142,19 @@ function toggleOverlay() {
   overlayEnabled = !overlayEnabled;
 }
 
+function round1d(value) {
+  return Math.round(value * 10) / 10;
+}
+
 function getPose(raw=false, color=false, formatted=false) {
   let pose = {};
   for (let jointName in joints) {
       let joint = joints[jointName];
       let dim = { x: canvasSize.x/2, y: canvasSize.y/2};
       if (color)
-        pose[jointName] = [joint.x-dim.x, joint.y-dim.y, jointDef[jointName][2]];
+        pose[jointName] = [round1d(joint.x-dim.x), round1d(joint.y-dim.y), jointDef[jointName][2]];
       else
-        pose[jointName] = [joint.x-dim.x, joint.y-dim.y];
+        pose[jointName] = [round1d(joint.x-dim.x), round1d(joint.y-dim.y)];
   }
   if (raw) return pose;
   if (formatted) return JSON.stringify(pose, null, 2);
@@ -266,4 +251,10 @@ function mirrorJointsChanged(axis) {
     let e = document.getElementById("mirror-joints-v");
     Joint.mirrorV = e.checked;
   }
+}
+
+function poseSelected() {
+  let e = document.getElementById("pose-presets");
+  jointDef = poses[e.value];
+  resetPose();
 }

@@ -27,6 +27,11 @@
       <div class="canv">
         <main></main>
         <div class="canv-controls">
+          <p>Pose Presets</p>
+          <select id="pose-presets" onchange="poseSelected()" autocomplete=off>
+            <option value="default">Default</option>
+            <option value="tpose1">T-Pose 1</option>
+          </select>
           <input type="button" value="Reset Pose"  onclick="resetPose()">
           <label for="offsetX">Offset X</label>
           <input id="offsetX" name="offsetX" type="range" autocomplete=off oninput="offsetChanged()">
@@ -73,6 +78,7 @@
     </footer>
     <script src="joint.js"></script>
     <script src="bone.js"></script>
+    <script src="poses.js"></script>
     <script src="main.js"></script>
     <script src="utils.js"></script>
   </body>
