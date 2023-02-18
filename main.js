@@ -7,6 +7,8 @@ let overlayEnabled = false;
 let bones = {};
 let joints = {};
 
+let hoverInfoElem;
+
 let jointDef = {
   "rWrist": [-191, -100, "#aaff00"],
   "rElbow": [-110, -88, "#ffff00"],
@@ -67,6 +69,8 @@ function setup() {
     let b = boneDef[bone];
     bones[bone] = new Bone(joints[b[0]], joints[b[1]], b[2]);
   }
+
+  hoverInfoElem = document.getElementById("hover-info");
 }
 
 function draw() {
@@ -83,9 +87,14 @@ function draw() {
     bones[bone].show();
   }
 
+  hoverInfoElem.textContent = "";
   for (let joint in joints) {
-    joints[joint].update();
-    joints[joint].show();
+    let j = joints[joint];
+    j.update();
+    j.show();
+    if (j.isOver()) {
+      hoverInfoElem.textContent = joint;
+    }
   }
 }
 

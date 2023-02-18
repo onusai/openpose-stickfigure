@@ -16,3 +16,7 @@ h4, h3, p, input {
 footer {
     padding: 10px;
 }
+
+.canv {
+    display: flex;
+}

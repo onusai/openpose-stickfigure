@@ -32,4 +32,12 @@ class Joint {
   released() {
     this.dragging = false;
   }
+
+  isOver() {
+    if (dist(mouseX, mouseY, this.x, this.y) < this.radius) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

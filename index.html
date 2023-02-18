@@ -23,7 +23,11 @@
         <input type="button" value="Toggle visibility" onclick="toggleOverlay()">
         <input type="file" accept="image/*" autocomplete=off onchange="loadOverlay(event)">
       </div>
-      <main></main>
+      <div class="canv">
+        <main></main>
+        <span id="hover-info" style="padding-left: 5px"></span>
+      </div>
+      
       <h4>Import / Export JSON Pose</h4>
       <div>
         <input type="button" value="Export" onclick="exportPose()">
