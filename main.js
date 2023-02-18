@@ -7,8 +7,10 @@ let overlayEnabled = false;
 let bones = {};
 let joints = {};
 
-let hoverInfoElem;
+let JointInfoLabel;
 let offsetSliders = {};
+let boneWidthSlider;
+let jointDiamaterSlider;
 
 let jointDef = {
   "rWrist": [-191, -100, "#aaff00"],
@@ -73,10 +75,12 @@ function setup() {
     bones[bone] = new Bone(joints[b[0]], joints[b[1]], b[2]);
   }
 
-  hoverInfoElem = document.getElementById("hover-info");
+  JointInfoLabel = document.getElementById("hover-info");
   offsetSliders.x = document.getElementById("offsetX");
   offsetSliders.y = document.getElementById("offsetY");
   offsetSliders.z = document.getElementById("offsetZ");
+  boneWidthSlider = document.getElementById("bone-width");
+  jointDiamaterSlider = document.getElementById("joint-diameter");
 
   offsetSliders.x .min = -canvasSize.x;
   offsetSliders.x .max = canvasSize.x;
@@ -104,13 +108,13 @@ function draw() {
     bones[bone].show();
   }
 
-  hoverInfoElem.textContent = "";
+  JointInfoLabel.textContent = "";
   for (let joint in joints) {
     let j = joints[joint];
     j.update();
     j.show();
     if (j.isOver()) {
-      hoverInfoElem.textContent = joint;
+      JointInfoLabel.textContent = joint;
     }
   }
 }
@@ -185,4 +189,12 @@ function offsetChanged() {
 
 function setBoneStyle(value) {
   Bone.style = value;
+}
+
+function boneWidthChanged() {
+  Bone.width = boneWidthSlider.value*1;
+}
+
+function jointDiamaterChanged() {
+  Joint.diameter = jointDiamaterSlider.value*1;
 }
