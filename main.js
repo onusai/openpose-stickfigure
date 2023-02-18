@@ -8,18 +8,18 @@ let bones = {};
 let joints = {};
 
 let jointDef = {
-  "rHand": [-191, -100, "#aaff00"],
+  "rWrist": [-191, -100, "#aaff00"],
   "rElbow": [-110, -88, "#ffff00"],
   "rShoulder": [-51, -126, "#ffaa00"],
   "rHip": [-50, 8, "#00ffaa"],
   "rKnee": [-40, 113, "#00ffff"],
-  "rFoot": [-42, 239, "#00aaff"],
-  "lHand": [139, -25, "#00ff55"],
+  "rAnkle": [-42, 239, "#00aaff"],
+  "lWrist": [139, -25, "#00ff55"],
   "lElbow": [66, -60, "#33ff00"],
   "lShoulder": [22, -126, "#88ff00"],
   "lHip": [16, 9, "#0055ff"],
   "lKnee": [8, 118, "#0000ff"],
-  "lFoot": [57, 215, "#5500ff"],
+  "lAnkle": [57, 215, "#5500ff"],
   "upperChest": [-15, -130, "#ff5500"],
   "nose": [-10, -168, "#ff0000"],
   "rHeadInner": [-21, -191, "#aa00ff"],
@@ -29,18 +29,18 @@ let jointDef = {
   }
 
 let boneDef = {
-  "rHand": ["rHand", "rElbow", "#999900"],
+  "rWrist": ["rWrist", "rElbow", "#999900"],
   "rElbow": ["rElbow", "rShoulder", "#996600"],
   "rShoulder": ["rShoulder", "upperChest", "#990000"],
   "rHip": ["rHip", "upperChest", "#009900"],
   "rKnee": ["rKnee", "rHip", "#009933"],
-  "rFoot": ["rFoot", "rKnee", "#009966"],
-  "lHand": ["lHand", "lElbow", "#339900"],
+  "rAnkle": ["rAnkle", "rKnee", "#009966"],
+  "lWrist": ["lWrist", "lElbow", "#339900"],
   "lElbow": ["lElbow", "lShoulder", "#669900"],
   "lShoulder": ["lShoulder", "upperChest", "#993300"],
   "lHip": ["lHip", "upperChest", "#009999"],
   "lKnee": ["lKnee", "lHip", "#006699"],
-  "lFoot": ["lFoot", "lKnee", "#003399"],
+  "lAnkle": ["lAnkle", "lKnee", "#003399"],
   "upperChest": ["upperChest", "nose", "#000099"],
   "rHeadInner": ["rHeadInner", "nose", "#330099"],
   "rHeadOuter": ["rHeadOuter", "rHeadInner", "#660099"],
@@ -119,7 +119,7 @@ function toggleOverlay() {
   overlayEnabled = !overlayEnabled;
 }
 
-function getPose(color=false) {
+function getPose(color=false, newline=false) {
   let lines = ['{'];
   for (let jointName in joints) {
       let joint = joints[jointName];
@@ -130,7 +130,7 @@ function getPose(color=false) {
         lines.push(`"${jointName}": [${joint.x-dim.x}, ${joint.y-dim.y}],`);
   }
   lines.push('}');
-  let out = lines.join('\n');
+  let out = newline ? lines.join('\n') : lines.join(' ');
   out = out.replace(/,([^,]*)$/, '$1'); // remove last comma to get valid json
   return out;
 }
