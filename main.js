@@ -162,8 +162,17 @@ function getPose(raw=false, color=false, formatted=false) {
 }
 
 function exportPose() {
+  let pose = getPose(true);
+  let out = "";
+  let i = 0;
+  for (joint in pose) {
+    if (i % 2 == 0) out += '\n';
+    out += `"${joint}": [${pose[joint][0]}, ${pose[joint][1]}], `;
+    i++;
+  }
+  out = "{" + out.substring(1, out.length-2) + "}";
   let e = document.getElementById("pose-json");
-  e.value = getPose(false);
+  e.value = out;
 }
 
 function importPose() {
