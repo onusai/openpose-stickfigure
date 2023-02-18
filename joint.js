@@ -4,7 +4,7 @@ class Joint {
     this.y = y;
     this.color = color(clr)
     
-    this.radius = 10;
+    this.radius = 8;
     this.dragging = false;
   }
 
