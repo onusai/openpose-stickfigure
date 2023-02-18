@@ -20,6 +20,26 @@ let poses = {
         "lHeadOuter": [24, -181, "#ff0055", "rHeadOuter"]
     },
     "tpose1": {
+        "rWrist":[-164,-99,"#aaff00","lWrist"],
+        "rElbow":[-89,-124,"#ffff00","lElbow"],
+        "rShoulder":[-49,-143,"#ffaa00","lShoulder"],
+        "rHip":[-25,-10,"#00ffaa","lHip"],
+        "rKnee":[-29,87,"#00ffff","lKnee"],
+        "rAnkle":[-29,192,"#00aaff","lAnkle"],
+        "lWrist":[164,-99,"#00ff55","rWrist"],
+        "lElbow":[89,-124,"#33ff00","rElbow"],
+        "lShoulder":[49,-143,"#88ff00","rShoulder"],
+        "lHip":[25,-10,"#0055ff","rHip"],
+        "lKnee":[29,87,"#0000ff","rKnee"],
+        "lAnkle":[29,192,"#5500ff","rAnkle"],
+        "upperChest":[-1,-136,"#ff5500",null],
+        "nose":[-1,-183,"#ff0000",null],
+        "rHeadInner":[-14,-192,"#aa00ff","lHeadInner"],
+        "rHeadOuter":[-24,-192,"#ff00aa","lHeadOuter"],
+        "lHeadInner":[13,-192,"#ff00ff","rHeadInner"],
+        "lHeadOuter":[24,-192,"#ff0055","rHeadOuter"]
+    },
+    "tpose2": {
         "rWrist":[-184,-90,"#aaff00","lWrist"],
         "rElbow":[-124,-114,"#ffff00","lElbow"],
         "rShoulder":[-49,-139,"#ffaa00","lShoulder"],

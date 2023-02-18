@@ -31,6 +31,7 @@
           <select id="pose-presets" onchange="poseSelected()" autocomplete=off>
             <option value="default">Default</option>
             <option value="tpose1">T-Pose 1</option>
+            <option value="tpose2">T-Pose 2</option>
           </select>
           <input type="button" value="Reset Pose"  onclick="resetPose()">
           <label for="offsetX">Offset X</label>
@@ -74,7 +75,13 @@
     </div>
     <footer>
       <p>View <a href="https://github.com/onusai/openpose-stickfigure">GitHub repo</a></p>
-      <p>Thanks to @Eppinette-Chi for the <a href="https://media.discordapp.net/attachments/1072013871730131004/1075904083086548992/make_your_own_stick_figure.png">reference image</a></p>
+      <div class="credits">
+        <p>Thanks to:</p>
+        <ul>
+          <li>@Eppinette-Chi for the <a href="https://media.discordapp.net/attachments/1072013871730131004/1075904083086548992/make_your_own_stick_figure.png">reference image</a></li>
+          <li>@Arstiv for pose preset "T-Pose 1"</li>
+        </ul>
+      </div>
     </footer>
     <script src="joint.js"></script>
     <script src="bone.js"></script>

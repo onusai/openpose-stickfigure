@@ -5,7 +5,7 @@ html, body {
     font-family: sans-serif;
 }
 
-h4, h3, p, input, select {
+h4, h3, p, input, select, ul {
     margin: 0;
     margin-bottom: 7px;
 }
@@ -26,4 +26,21 @@ footer {
     display: flex;
     flex-direction: column;
     padding: 10px;
+}
+
+footer {
+    font-size: 0.9em;
+}
+
+.credits {
+    font-size: 0.85em;
+}
+
+.credits p {
+    margin: 0;
+}
+
+.credits ul {
+    margin: 0;
+    padding-left: 10px;;
 }
