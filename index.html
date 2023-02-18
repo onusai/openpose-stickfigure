@@ -6,20 +6,31 @@
     <meta charset="utf-8" />
   </head>
   <body>
-    <main>
+    <div class="view">
       <h3>Openpose Stick Figure</h3>
       <p>Click and drag the joints to pose the stick figure</p>
-      <label for="iwidth">Width:</label>
-      <input type="text" id="iwidth" name="iwidth" value="512" autocomplete=off><br><br>
-      <label for="iheight">Height:</label>
-      <input type="text" id="iheight" name="iheight" value="512" autocomplete=off><br><br>
-      <input type="submit" value="Resize / Reset"  onclick="setup()" style="margin-bottom: 10px">
+      <div>
+        <label for="iwidth">Width:</label>
+        <input type="text" id="iwidth" name="iwidth" value="512" autocomplete=off style="max-width: 40px;">
+      </div>
+      <div>
+        <label for="iheight">Height:</label>
+        <input type="text" id="iheight" name="iheight" value="512" autocomplete=off style="max-width: 40px;">
+      </div>
+      <input type="submit" value="Resize / Reset"  onclick="setup()">
       <div class="overlay-controls">
         <h4>Overlay Image</h4>
+        <input type="button" value="Toggle visibility" onclick="toggleOverlay()">
         <input type="file" accept="image/*" autocomplete=off onchange="loadOverlay(event)">
-        <input type="button" value="Toggle overlay visibility" onclick="toggleOverlay()" style="width: 150px;">
       </div>
-    </main>
+      <main></main>
+      <h4>Import / Export JSON Pose</h4>
+      <div>
+        <input type="button" value="Export" onclick="exportPose()">
+        <input type="button" value="Import" onclick="importPose()">
+      </div>
+      <textarea id="pose-json" rows="2" cols="50" autocomplete=off></textarea>
+    </div>
     <footer>
       <p>View <a href="https://github.com/onusai/openpose-stickfigure">GitHub repo</a></p>
       <p>Thanks to @Eppinette-Chi for the <a href="https://media.discordapp.net/attachments/1072013871730131004/1075904083086548992/make_your_own_stick_figure.png">reference image</a></p>

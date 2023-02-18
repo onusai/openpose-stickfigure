@@ -1,16 +1,18 @@
-html, body, h4, h3 {
+html, body {
     margin: 0;
     padding: 0;
+    width: auto;
 }
 
-main, footer {
+h4, h3, p, input {
+    margin: 0;
+    margin-bottom: 7px;
+}
+
+.view {
     padding: 10px;
 }
 
-.overlay-controls {
-  display: flex;
-  flex-direction: column;
-  width: auto;
-  gap: 10px;
-  margin-bottom: 10px;
+footer {
+    padding: 10px;
 }

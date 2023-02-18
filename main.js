@@ -8,44 +8,44 @@ let bones = {};
 let joints = {};
 
 let jointDef = {
-  "lowerArmR": [-191, -100, "#aaff00"],
-  "upperArmR": [-110, -88, "#ffff00"],
-  "shoulderR": [-51, -126, "#ffaa00"],
-  "rSide": [-50, 8, "#00ffaa"],
-  "upperRLeg": [-40, 113, "#00ffff"],
-  "lowerRLeg": [-42, 239, "#00aaff"],
-  "lowerArmL": [139, -25, "#00ff55"],
-  "upperArmL": [66, -60, "#33ff00"],
-  "shoulderL": [22, -126, "#88ff00"],
-  "LSide": [16, 9, "#0055ff"],
-  "upperLegL": [8, 118, "#0000ff"],
-  "lowerLegL": [57, 215, "#5500ff"],
-  "neck": [-15, -130, "#ff5500"],
-  "head": [-10, -168, "#ff0000"],
-  "headRSideInner": [-21, -191, "#aa00ff"],
-  "headRSideOuter": [-41, -183, "#ff00aa"],
-  "headLSideInner": [4, -189, "#ff00ff"],
-  "headLSideOuter": [24, -181, "#ff0055"]
+  "rHand": [-191, -100, "#aaff00"],
+  "rElbow": [-110, -88, "#ffff00"],
+  "rShoulder": [-51, -126, "#ffaa00"],
+  "rHip": [-50, 8, "#00ffaa"],
+  "rKnee": [-40, 113, "#00ffff"],
+  "rFoot": [-42, 239, "#00aaff"],
+  "lHand": [139, -25, "#00ff55"],
+  "lElbow": [66, -60, "#33ff00"],
+  "lShoulder": [22, -126, "#88ff00"],
+  "lHip": [16, 9, "#0055ff"],
+  "lKnee": [8, 118, "#0000ff"],
+  "lFoot": [57, 215, "#5500ff"],
+  "upperChest": [-15, -130, "#ff5500"],
+  "nose": [-10, -168, "#ff0000"],
+  "rHeadInner": [-21, -191, "#aa00ff"],
+  "rHeadOuter": [-41, -183, "#ff00aa"],
+  "lHeadInner": [4, -189, "#ff00ff"],
+  "lHeadOuter": [24, -181, "#ff0055"]
   }
 
 let boneDef = {
-  "lowerArmR": ["lowerArmR", "upperArmR", "#999900"],
-  "upperArmR": ["upperArmR", "shoulderR", "#996600"],
-  "shoulderR": ["shoulderR", "neck", "#990000"],
-  "rSide": ["rSide", "neck", "#009900"],
-  "upperRLeg": ["upperRLeg", "rSide", "#009933"],
-  "lowerRLeg": ["lowerRLeg", "upperRLeg", "#009966"],
-  "lowerArmL": ["lowerArmL", "upperArmL", "#339900"],
-  "upperArmL": ["upperArmL", "shoulderL", "#669900"],
-  "shoulderL": ["shoulderL", "neck", "#993300"],
-  "LSide": ["LSide", "neck", "#009999"],
-  "upperLegL": ["upperLegL", "LSide", "#006699"],
-  "lowerLegL": ["lowerLegL", "upperLegL", "#003399"],
-  "neck": ["neck", "head", "#000099"],
-  "headRSideInner": ["headRSideInner", "head", "#330099"],
-  "headRSideOuter": ["headRSideOuter", "headRSideInner", "#660099"],
-  "headLSideInner": ["headLSideInner", "head", "#990099"],
-  "headLSideOuter": ["headLSideOuter", "headLSideInner", "#990066"]
+  "rHand": ["rHand", "rElbow", "#999900"],
+  "rElbow": ["rElbow", "rShoulder", "#996600"],
+  "rShoulder": ["rShoulder", "upperChest", "#990000"],
+  "rHip": ["rHip", "upperChest", "#009900"],
+  "rKnee": ["rKnee", "rHip", "#009933"],
+  "rFoot": ["rFoot", "rKnee", "#009966"],
+  "lHand": ["lHand", "lElbow", "#339900"],
+  "lElbow": ["lElbow", "lShoulder", "#669900"],
+  "lShoulder": ["lShoulder", "upperChest", "#993300"],
+  "lHip": ["lHip", "upperChest", "#009999"],
+  "lKnee": ["lKnee", "lHip", "#006699"],
+  "lFoot": ["lFoot", "lKnee", "#003399"],
+  "upperChest": ["upperChest", "nose", "#000099"],
+  "rHeadInner": ["rHeadInner", "nose", "#330099"],
+  "rHeadOuter": ["rHeadOuter", "rHeadInner", "#660099"],
+  "lHeadInner": ["lHeadInner", "nose", "#990099"],
+  "lHeadOuter": ["lHeadOuter", "lHeadInner", "#990066"]
 }
 
 function setup() {
@@ -117,4 +117,36 @@ function loadOverlay(event) {
 
 function toggleOverlay() {
   overlayEnabled = !overlayEnabled;
+}
+
+function getPose(color=false) {
+  let lines = ['{'];
+  for (let jointName in joints) {
+      let joint = joints[jointName];
+      let dim = { x: canvasSize.x/2, y: canvasSize.y/2};
+      if (color)
+        lines.push(`"${jointName}": [${joint.x-dim.x}, ${joint.y-dim.y}, "${jointDef[jointName][2]}"],`);
+      else
+        lines.push(`"${jointName}": [${joint.x-dim.x}, ${joint.y-dim.y}],`);
+  }
+  lines.push('}');
+  let out = lines.join('\n');
+  out = out.replace(/,([^,]*)$/, '$1'); // remove last comma to get valid json
+  return out;
+}
+
+function exportPose() {
+  let e = document.getElementById("pose-json");
+  e.value = getPose(false);
+}
+
+function importPose() {
+  let e = document.getElementById("pose-json");
+  let pose = JSON.parse(e.value);
+  let dim = { x: canvasSize.x/2, y: canvasSize.y/2};
+  for (joint in pose) {
+    joints[joint].x = pose[joint][0] + dim.x;
+    joints[joint].y = pose[joint][1] + dim.y;
+  }
+  e.value = "";
 }
