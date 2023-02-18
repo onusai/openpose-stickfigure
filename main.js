@@ -124,6 +124,8 @@ function resize() {
   resizeCanvas(canvasSize.x, canvasSize.y);
   resetOffset();
   setPose(pose);
+  let ratio = Math.min(canvasSize.x / overlayImg.width, canvasSize.y / overlayImg.height);
+  overlaySize = { x: overlayImg.width*ratio, y: overlayImg.height*ratio };
 }
 
 function resetPose() {
