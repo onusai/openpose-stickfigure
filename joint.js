@@ -13,7 +13,7 @@ class Joint {
     this.color = color(clr)
     
     this._z = 0;
-    this.radius = 8;
+    this.diameter = 8;
     this.dragging = false;
   }
 
@@ -27,11 +27,11 @@ class Joint {
   show() {
     noStroke()
     fill(this.color)
-    circle(this.x, this.y, this.radius);
+    circle(this.x, this.y, this.diameter);
   }
 
   pressed() {
-    if (dist(mouseX, mouseY, this.x, this.y) < this.radius) {
+    if (dist(mouseX, mouseY, this.x, this.y) < this.diameter) {
       this.dragging = true;
       this.offsetX = this._x - mouseX;
       this.offsetY = this._y - mouseY;
@@ -43,7 +43,7 @@ class Joint {
   }
 
   isOver() {
-    if (dist(mouseX, mouseY, this.x, this.y) < this.radius) {
+    if (dist(mouseX, mouseY, this.x, this.y) < this.diameter) {
       return true;
     } else {
       return false;

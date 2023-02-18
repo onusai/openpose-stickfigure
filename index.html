@@ -33,10 +33,17 @@
           <input id="offsetY" name="offsetY" type="range" min="0" max="0" value="0" autocomplete=off oninput="offsetChanged()">
           <label for="offsetZ">Offset Z</label>
           <input id="offsetZ" name="offsetZ" type="range" min="0" max="0" value="0" autocomplete=off oninput="offsetChanged()">
+          <p>Bone Style</p>
+          <form>
+            <input type="radio" name="radio-bone" checked="checked" autocomplete=off onclick="setBoneStyle('ellipse')">
+            <label for="radio-bone-ellipse">Ellipse</label>
+            <input type="radio" name="radio-bone" autocomplete=off  onclick="setBoneStyle('line')">
+            <label for="radio-line-ellipse">Line</label>
+          </form>
         </div>
       </div>
       
-      <h4>Import / Export JSON Pose</h4>
+      <h4>Import / Export JSON</h4>
       <div>
         <input type="button" value="Export" onclick="exportPose()">
         <input type="button" value="Import" onclick="importPose()">

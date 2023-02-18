@@ -182,3 +182,7 @@ function offsetChanged() {
   Joint.offset.y = offsetSliders.y.value*-1;
   Joint.offset.z = offsetSliders.z.value*1;
 }
+
+function setBoneStyle(value) {
+  Bone.style = value;
+}
