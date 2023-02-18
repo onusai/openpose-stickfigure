@@ -2,6 +2,7 @@ html, body {
     margin: 0;
     padding: 0;
     width: auto;
+    font-family: sans-serif;
 }
 
 h4, h3, p, input {

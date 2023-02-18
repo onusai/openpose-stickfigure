@@ -92,7 +92,7 @@ function draw() {
     bones[bone].show();
   }
 
-  JointInfoLabel.textContent = "";
+  JointInfoLabel.textContent = "<hover over joint>";
   for (let joint in joints) {
     let j = joints[joint];
     j.update();
@@ -115,6 +115,22 @@ function mouseReleased() {
   }
 }
 
+function resize() {
+  let pose = getPose(true);
+  canvasSize = {
+    x: document.getElementById("iwidth").value,
+    y: document.getElementById("iheight").value
+  }
+  resizeCanvas(canvasSize.x, canvasSize.y);
+  resetOffset();
+  setPose(pose);
+}
+
+function resetPose() {
+  resetOffset();
+  setPose(jointDef);
+}
+
 function loadOverlay(event) {
   let reader = new FileReader();
   reader.onload = function() {
@@ -133,20 +149,19 @@ function toggleOverlay() {
   overlayEnabled = !overlayEnabled;
 }
 
-function getPose(color=false, newline=false) {
-  let lines = ['{'];
+function getPose(raw=false, color=false, formatted=false) {
+  let pose = {};
   for (let jointName in joints) {
       let joint = joints[jointName];
       let dim = { x: canvasSize.x/2, y: canvasSize.y/2};
       if (color)
-        lines.push(`"${jointName}": [${joint.x-dim.x}, ${joint.y-dim.y}, "${jointDef[jointName][2]}"],`);
+        pose[jointName] = [joint.x-dim.x, joint.y-dim.y, jointDef[jointName][2]];
       else
-        lines.push(`"${jointName}": [${joint.x-dim.x}, ${joint.y-dim.y}],`);
+        pose[jointName] = [joint.x-dim.x, joint.y-dim.y];
   }
-  lines.push('}');
-  let out = newline ? lines.join('\n') : lines.join(' ');
-  out = out.replace(/,([^,]*)$/, '$1'); // remove last comma to get valid json
-  return out;
+  if (raw) return pose;
+  if (formatted) return JSON.stringify(pose, null, 2);
+  return JSON.stringify(pose);
 }
 
 function exportPose() {
@@ -157,12 +172,16 @@ function exportPose() {
 function importPose() {
   let e = document.getElementById("pose-json");
   let pose = JSON.parse(e.value);
+  setPose(pose);
+  e.value = "";
+}
+
+function setPose(pose) {
   let dim = { x: canvasSize.x/2, y: canvasSize.y/2};
   for (joint in pose) {
     joints[joint].x = pose[joint][0] + dim.x;
     joints[joint].y = pose[joint][1] + dim.y;
   }
-  e.value = "";
 }
 
 function resetUI() {
