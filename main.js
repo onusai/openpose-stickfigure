@@ -12,25 +12,27 @@ let offsetSliders = {};
 let boneWidthSlider;
 let jointDiamaterSlider;
 
+let mirrorCenterJoint = "upperChest";
+
 let jointDef = {
-  "rWrist": [-191, -100, "#aaff00"],
-  "rElbow": [-110, -88, "#ffff00"],
-  "rShoulder": [-51, -126, "#ffaa00"],
-  "rHip": [-50, 8, "#00ffaa"],
-  "rKnee": [-40, 113, "#00ffff"],
-  "rAnkle": [-42, 239, "#00aaff"],
-  "lWrist": [139, -25, "#00ff55"],
-  "lElbow": [66, -60, "#33ff00"],
-  "lShoulder": [22, -126, "#88ff00"],
-  "lHip": [16, 9, "#0055ff"],
-  "lKnee": [8, 118, "#0000ff"],
-  "lAnkle": [57, 215, "#5500ff"],
-  "upperChest": [-15, -130, "#ff5500"],
-  "nose": [-10, -168, "#ff0000"],
-  "rHeadInner": [-21, -191, "#aa00ff"],
-  "rHeadOuter": [-41, -183, "#ff00aa"],
-  "lHeadInner": [4, -189, "#ff00ff"],
-  "lHeadOuter": [24, -181, "#ff0055"]
+  "rWrist": [-191, -100, "#aaff00", "lWrist"],
+  "rElbow": [-110, -88, "#ffff00", "lElbow"],
+  "rShoulder": [-51, -126, "#ffaa00", "lShoulder"],
+  "rHip": [-50, 8, "#00ffaa", "lHip"],
+  "rKnee": [-40, 113, "#00ffff", "lKnee"],
+  "rAnkle": [-42, 239, "#00aaff", "lAnkle"],
+  "lWrist": [139, -25, "#00ff55", "rWrist"],
+  "lElbow": [66, -60, "#33ff00", "rElbow"],
+  "lShoulder": [22, -126, "#88ff00", "rShoulder"],
+  "lHip": [16, 9, "#0055ff", "rHip"],
+  "lKnee": [8, 118, "#0000ff", "rKnee"],
+  "lAnkle": [57, 215, "#5500ff", "rAnkle"],
+  "upperChest": [-15, -130, "#ff5500", null],
+  "nose": [-10, -168, "#ff0000", null],
+  "rHeadInner": [-21, -191, "#aa00ff", "lHeadInner"],
+  "rHeadOuter": [-41, -183, "#ff00aa", "lHeadOuter"],
+  "lHeadInner": [4, -189, "#ff00ff", "rHeadInner"],
+  "lHeadOuter": [24, -181, "#ff0055", "rHeadOuter"]
   }
 
 let boneDef = {
@@ -75,6 +77,14 @@ function setup() {
     bones[bone] = new Bone(joints[b[0]], joints[b[1]], b[2]);
   }
 
+  Joint.mirrorCenterJoint = joints[mirrorCenterJoint];
+  for (let joint in jointDef) {
+    let mirrorJoint = jointDef[joint][3];
+    if (mirrorJoint) {
+      joints[joint].mirrorJoint = joints[mirrorJoint];
+    }
+  }
+
   resetUI();
 }
 
@@ -115,7 +125,7 @@ function mouseReleased() {
   }
 }
 
-function resize() {
+function resizeCanv() {
   let pose = getPose(true);
   canvasSize = {
     x: document.getElementById("iwidth").value,
@@ -245,4 +255,15 @@ function resetBoneJointSize() {
   jointDiamaterSlider.value = 8;
   boneWidthChanged();
   jointDiamaterChanged();
+}
+
+function mirrorJointsChanged(axis) {
+  if (axis == "h") {
+    let e = document.getElementById("mirror-joints-h");
+    Joint.mirrorH = e.checked;
+  }
+  else if (axis == "v") {
+    let e = document.getElementById("mirror-joints-v");
+    Joint.mirrorV = e.checked;
+  }
 }

@@ -3,6 +3,10 @@ class Joint {
   static offset = { x: 0, y: 0, z: 0};
   static diameter = 8;
 
+  static mirrorCenterJoint = null;
+  static mirrorH = false;
+  static mirrorV = false;
+
   get x() { return this._x + Joint.offset.x + ((this._x - (canvasSize.x/2))*Joint.offset.z); }
   get y() { return this._y + Joint.offset.y + ((this._y - (canvasSize.y/2))*Joint.offset.z); }
   set x(value) { this._x = value; }
@@ -15,12 +19,29 @@ class Joint {
     
     this._z = 0;
     this.dragging = false;
+    this.mirrorJoint = null;
   }
 
   update() {
     if (this.dragging) {
       this._x = mouseX + this.offsetX;
       this._y = mouseY + this.offsetY;
+
+      if (!this.mirrorJoint) return;
+
+      if (Joint.mirrorH && Joint.mirrorV) {
+        this.mirrorJoint.x = Joint.mirrorCenterJoint.x-(this.x - Joint.mirrorCenterJoint.x);
+        this.mirrorJoint.y = Joint.mirrorCenterJoint.y-(this.y - Joint.mirrorCenterJoint.y);
+      }
+      else if (Joint.mirrorH) {
+        console.log("a")
+        this.mirrorJoint.x = Joint.mirrorCenterJoint.x-(this.x - Joint.mirrorCenterJoint.x);
+        this.mirrorJoint.y = this.y;
+      }
+      else if (Joint.mirrorV) {
+        this.mirrorJoint.y = Joint.mirrorCenterJoint.y-(this.y - Joint.mirrorCenterJoint.y);
+        this.mirrorJoint.x = this.x;
+      }
     }
   }
 

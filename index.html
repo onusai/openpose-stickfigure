@@ -11,11 +11,11 @@
       <p>Click and drag the joints to pose the stick figure</p>
       <div>
         <label for="iwidth">Width</label>
-        <input type="text" id="iwidth" name="iwidth" value="512" autocomplete=off style="max-width: 40px;" oninput="resize()">
+        <input type="text" id="iwidth" name="iwidth" value="512" autocomplete=off style="max-width: 40px;" oninput="resizeCanv()">
       </div>
       <div>
         <label for="iheight">Height</label>
-        <input type="text" id="iheight" name="iheight" value="512" autocomplete=off style="max-width: 40px;"  oninput="resize()">
+        <input type="text" id="iheight" name="iheight" value="512" autocomplete=off style="max-width: 40px;"  oninput="resizeCanv()">
       </div>
       <div style="display: flex; gap: 5px;">
       </div>
@@ -47,6 +47,16 @@
           <label for="joint-diameter">Joint Diameter</label>
           <input id="joint-diameter" name="joint-diameter" type="range" min="0.1" max="20" step="0.1" autocomplete=off oninput="jointDiamaterChanged()">
           <input type="button" value="Reset Size" onclick="resetBoneJointSize()">
+          <p>Mirror Joints</p>
+          <form>
+            <input id="mirror-joints-h" type="checkbox" name="mirror-joints-h"  autocomplete=off onclick="mirrorJointsChanged('h')">
+            <label for="mirror-joints-h">Horizontally</label>
+          </form>
+          <form>
+            <input id="mirror-joints-v" type="checkbox" name="mirror-joints-v"  autocomplete=off onclick="mirrorJointsChanged('v')">
+            <label for="mirror-joints-v">Vertically</label>
+          </form>
+
         </div>
       </div>
       <p>Hint: <span id="hover-info"></span></p>
