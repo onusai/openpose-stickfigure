@@ -173,9 +173,9 @@ function resetUI() {
   boneWidthSlider = document.getElementById("bone-width");
   jointDiamaterSlider = document.getElementById("joint-diameter");
 
-  offsetSliders.x .min = -canvasSize.x;
-  offsetSliders.x .max = canvasSize.x;
-  offsetSliders.x .value = 0;
+  offsetSliders.x.min = -canvasSize.x;
+  offsetSliders.x.max = canvasSize.x;
+  offsetSliders.x.value = 0;
   offsetSliders.y.min = -canvasSize.y;
   offsetSliders.y.max = canvasSize.y;
   offsetSliders.y.value = 0;
@@ -210,4 +210,18 @@ function boneWidthChanged() {
 
 function jointDiamaterChanged() {
   Joint.diameter = jointDiamaterSlider.value*1;
+}
+
+function resetOffset() {
+  offsetSliders.x.value = 0;
+  offsetSliders.y.value = 0;
+  offsetSliders.z.value = 0;
+  offsetChanged();
+}
+
+function resetBoneJointSize() {
+  boneWidthSlider.value = 8;
+  jointDiamaterSlider.value = 8;
+  boneWidthChanged();
+  jointDiamaterChanged();
 }
