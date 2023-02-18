@@ -1,66 +1,71 @@
-let canvasSize = { x: 512, y: 512}
+let canvasSize;
 
 let overlayImg;
 let overlaySize;
 let overlayEnabled = false;
 
-let joints;
-let bones;
+let bones = {};
+let joints = {};
 
-function reloadApp() {
-  let width = document.getElementById("iwidth").value;
-  let height = document.getElementById("iheight").value;
-  canvasSize = {x: width, y: height}
-  setup()
+let jointDef = {
+  "lowerArmR": [-191, -100, "#aaff00"],
+  "upperArmR": [-110, -88, "#ffff00"],
+  "shoulderR": [-51, -126, "#ffaa00"],
+  "rSide": [-50, 8, "#00ffaa"],
+  "upperRLeg": [-40, 113, "#00ffff"],
+  "lowerRLeg": [-42, 239, "#00aaff"],
+  "lowerArmL": [139, -25, "#00ff55"],
+  "upperArmL": [66, -60, "#33ff00"],
+  "shoulderL": [22, -126, "#88ff00"],
+  "LSide": [16, 9, "#0055ff"],
+  "upperLegL": [8, 118, "#0000ff"],
+  "lowerLegL": [57, 215, "#5500ff"],
+  "neck": [-15, -130.33333333333334, "#ff5500"],
+  "head": [-10, -168, "#ff0000"],
+  "headRSideInner": [-21, -191, "#aa00ff"],
+  "headRSideOuter": [-41, -183, "#ff00aa"],
+  "headLSideInner": [4, -189, "#ff00ff"],
+  "headLSideOuter": [24, -181, "#ff0055"]
+  }
+
+let boneDef = {
+  "lowerArmR": ["lowerArmR", "upperArmR", "#999900"],
+  "upperArmR": ["upperArmR", "shoulderR", "#996600"],
+  "shoulderR": ["shoulderR", "neck", "#990000"],
+  "rSide": ["rSide", "neck", "#009900"],
+  "upperRLeg": ["upperRLeg", "rSide", "#009933"],
+  "lowerRLeg": ["lowerRLeg", "upperRLeg", "#009966"],
+  "lowerArmL": ["lowerArmL", "upperArmL", "#339900"],
+  "upperArmL": ["upperArmL", "shoulderL", "#669900"],
+  "shoulderL": ["shoulderL", "neck", "#993300"],
+  "LSide": ["LSide", "neck", "#009999"],
+  "upperLegL": ["upperLegL", "LSide", "#006699"],
+  "lowerLegL": ["lowerLegL", "upperLegL", "#003399"],
+  "neck": ["neck", "head", "#000099"],
+  "headRSideInner": ["headRSideInner", "head", "#330099"],
+  "headRSideOuter": ["headRSideOuter", "headRSideInner", "#660099"],
+  "headLSideInner": ["headLSideInner", "head", "#990099"],
+  "headLSideOuter": ["headLSideOuter", "headLSideInner", "#990066"]
 }
 
 function setup() {
-  createCanvas(canvasSize.x, canvasSize.y);
-  
-  joints = {
-    "lowerArmR": new Joint(-145, 18, "#aaff00"), 
-    "upperArmR": new Joint(-117, -50, "#ffff00"), 
-    "shoulderR": new Joint(-37, -86, "#ffaa00"), 
-    "rSide": new Joint(-20, 57, "#00ffaa"), 
-    "upperRLeg": new Joint(-6, 149, "#00ffff"), 
-    "lowerRLeg": new Joint(-36, 236, "#00aaff"), 
-    "lowerArmL": new Joint(177, -170, "#00ff55"), 
-    "upperArmL": new Joint(125, -102, "#33ff00"), 
-    "shoulderL": new Joint(39, -82, "#88ff00"), 
-    "LSide": new Joint(32, 62, "#0055ff"), 
-    "upperLegL": new Joint(83, 149, "#0000ff"), 
-    "lowerLegL": new Joint(67, 236, "#5500ff"), 
-    "neck": new Joint(0, -85.33333333333334, "#ff5500"), 
-    "head": new Joint(5, -147, "#ff0000"), 
-    "headRSideInner": new Joint(-14, -165, "#aa00ff"), 
-    "headRSideOuter": new Joint(-30, -155, "#ff00aa"), 
-    "headLSideInner": new Joint(24, -159, "#ff00ff"), 
-    "headLSideOuter": new Joint(40, -141, "#ff0055")
-  }
-  
-  bones = {
-    "lowerArmR": new Bone(joints.lowerArmR, joints.upperArmR, "#999900"),
-    "upperArmR": new Bone(joints.upperArmR, joints.shoulderR, "#996600"),
-    "shoulderR": new Bone(joints.shoulderR, joints.neck, "#990000"),
-    "rSide": new Bone(joints.rSide, joints.neck, "#009900"),
-    "upperRLeg": new Bone(joints.upperRLeg, joints.rSide, "#009933"),
-    "lowerRLeg": new Bone(joints.lowerRLeg, joints.upperRLeg, "#009966"),
-    "lowerArmL": new Bone(joints.lowerArmL, joints.upperArmL, "#339900"),
-    "upperArmL": new Bone(joints.upperArmL, joints.shoulderL, "#669900"),
-    "shoulderL": new Bone(joints.shoulderL, joints.neck, "#993300"),
-    "LSide": new Bone(joints.LSide, joints.neck, "#009999"),
-    "upperLegL": new Bone(joints.upperLegL, joints.LSide, "#006699"),
-    "lowerLegL": new Bone(joints.lowerLegL, joints.upperLegL, "#003399"),
-    "neck": new Bone(joints.neck, joints.head, "#000099"),
-    "headRSideInner": new Bone(joints.headRSideInner, joints.head, "#330099"),
-    "headRSideOuter": new Bone(joints.headRSideOuter, joints.headRSideInner, "#660099"),
-    "headLSideInner": new Bone(joints.headLSideInner, joints.head, "#990099"),
-    "headLSideOuter": new Bone(joints.headLSideOuter, joints.headLSideInner, "#990066")
+  canvasSize = {
+    x: document.getElementById("iwidth").value,
+    y: document.getElementById("iheight").value
   }
 
-  for (joint in joints) {
-    joints[joint].x += canvasSize.x/2
-    joints[joint].y += canvasSize.y/2
+  createCanvas(canvasSize.x, canvasSize.y);
+  
+  for (let joint in jointDef) {
+    let j = jointDef[joint];
+    joints[joint] = new Joint(j[0], j[1], j[2]);
+    joints[joint].x += canvasSize.x/2;
+    joints[joint].y += canvasSize.y/2;
+  }
+
+  for (let bone in boneDef) {
+    let b = boneDef[bone];
+    bones[bone] = new Bone(joints[b[0]], joints[b[1]], b[2]);
   }
 }
 
@@ -98,7 +103,7 @@ function mouseReleased() {
 
 function loadOverlay(event) {
   let reader = new FileReader();
-  reader.onload = function(){
+  reader.onload = function() {
     overlayImg = loadImage(reader.result);
     overlayEnabled = false;
     setTimeout(() => {
