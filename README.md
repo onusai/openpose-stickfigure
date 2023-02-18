@@ -1,3 +1,3 @@
 # openpose-stickfigure
 
-go to this page to use it: https://onusai.github.io/openpose-stickfigure/
+Use webapp here: https://onusai.github.io/openpose-stickfigure/
