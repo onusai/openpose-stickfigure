@@ -34,7 +34,6 @@ class Joint {
         this.mirrorJoint.y = Joint.mirrorCenterJoint.y-(this.y - Joint.mirrorCenterJoint.y);
       }
       else if (Joint.mirrorH) {
-        console.log("a")
         this.mirrorJoint.x = Joint.mirrorCenterJoint.x-(this.x - Joint.mirrorCenterJoint.x);
         this.mirrorJoint.y = this.y;
       }
