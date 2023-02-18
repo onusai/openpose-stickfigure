@@ -34,7 +34,7 @@ let poses = {
         "lAnkle":[29,192,"#5500ff","rAnkle"],
         "upperChest":[-1,-136,"#ff5500",null],
         "nose":[-1,-183,"#ff0000",null],
-        "rHeadInner":[-14,-192,"#aa00ff","lHeadInner"],
+        "rHeadInner":[-13,-192,"#aa00ff","lHeadInner"],
         "rHeadOuter":[-24,-192,"#ff00aa","lHeadOuter"],
         "lHeadInner":[13,-192,"#ff00ff","rHeadInner"],
         "lHeadOuter":[24,-192,"#ff0055","rHeadOuter"]
