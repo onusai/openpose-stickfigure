@@ -3,10 +3,6 @@ html, body, h4, h3 {
     padding: 0;
 }
 
-canvas {
-    display: block;
-}
-  
 main, footer {
     padding: 10px;
 }

@@ -1,7 +1,8 @@
 let canvasSize = { x: 512, y: 512}
-let overlaySize;
+
 let overlayImg;
-let enableOverlay = false;
+let overlaySize;
+let overlayEnabled = false;
 
 let joints;
 let bones;
@@ -37,11 +38,6 @@ function setup() {
     "headLSideOuter": new Joint(40, -141, "#ff0055")
   }
   
-  for (joint in joints) {
-    joints[joint].x += canvasSize.x/2
-    joints[joint].y += canvasSize.y/2
-  }
-  
   bones = {
     "lowerArmR": new Bone(joints.lowerArmR, joints.upperArmR, "#999900"),
     "upperArmR": new Bone(joints.upperArmR, joints.shoulderR, "#996600"),
@@ -61,24 +57,30 @@ function setup() {
     "headLSideInner": new Bone(joints.headLSideInner, joints.head, "#990099"),
     "headLSideOuter": new Bone(joints.headLSideOuter, joints.headLSideInner, "#990066")
   }
+
+  for (joint in joints) {
+    joints[joint].x += canvasSize.x/2
+    joints[joint].y += canvasSize.y/2
+  }
 }
 
 function draw() {
   background(0);
   
-  if (overlayImg && enableOverlay) {
+  if (overlayImg && overlayEnabled) {
     let x = (canvasSize.x - overlaySize.x) / 2;
     let y = (canvasSize.y - overlaySize.y) / 2;
     tint(255, 127);
     image(overlayImg, x, y, overlaySize.x, overlaySize.y);
   }
-  tint(255);
-  for (let bone in bones) bones[bone].show();
+
+  for (let bone in bones) {
+    bones[bone].show();
+  }
+
   for (let joint in joints) {
-    joint = joints[joint];
-    joint.update();
-    joint.over();
-    joint.show();
+    joints[joint].update();
+    joints[joint].show();
   }
 }
 
@@ -98,54 +100,16 @@ function loadOverlay(event) {
   let reader = new FileReader();
   reader.onload = function(){
     overlayImg = loadImage(reader.result);
-    
-    enableOverlay = false;
+    overlayEnabled = false;
     setTimeout(() => {
-      let overlay = new Image();
-      overlay.src = reader.result;
-      document.getElementById("hidden").appendChild(overlay);
-      let ratio = Math.min(canvasSize.x / overlay.width, canvasSize.y / overlay.height);
-      overlaySize = { x: overlay.width*ratio, y: overlay.height*ratio };
-      enableOverlay = true;
+      let ratio = Math.min(canvasSize.x / overlayImg.width, canvasSize.y / overlayImg.height);
+      overlaySize = { x: overlayImg.width*ratio, y: overlayImg.height*ratio };
+      overlayEnabled = true;
     }, "500")
-    
   }
   reader.readAsDataURL(event.target.files[0]);
 }
 
 function toggleOverlay() {
-  enableOverlay = !enableOverlay;
-}
-
-function rgba2hex(orig) {
-  var a, isPercent,
-    rgb = orig.replace(/\s/g, '').match(/^rgba?\((\d+),(\d+),(\d+),?([^,\s)]+)?/i),
-    alpha = (rgb && rgb[4] || "").trim(),
-    hex = rgb ?
-    (rgb[1] | 1 << 8).toString(16).slice(1) +
-    (rgb[2] | 1 << 8).toString(16).slice(1) +
-    (rgb[3] | 1 << 8).toString(16).slice(1) : orig;
-
-  if (alpha !== "") {
-    a = alpha;
-  } else {
-    a = 01;
-  }
-  // multiply before convert to HEX
-  a = ((a * 255) | 1 << 8).toString(16).slice(1)
-  hex = hex;// + a;
-
-  return hex;
-}
-
-// export pose to console
-function keyPressed() {
-  if (keyCode === ENTER) {
-    for (let jointName in joints) {
-      let joint = joints[jointName];
-      let dim = 512/2
-      //"lowerArmR": new Joint(1, 1, "#aaff00"),
-      console.log(`"${jointName}": new Joint(${joint.x-dim}, ${joint.y-dim}, "#${rgba2hex(joint.color.toString())}"),`)
-    }
-  }
+  overlayEnabled = !overlayEnabled;
 }

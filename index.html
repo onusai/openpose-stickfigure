@@ -2,10 +2,8 @@
 <html lang="en">
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8" />
-
   </head>
   <body>
     <main>
@@ -19,8 +17,7 @@
       <div class="overlay-controls">
         <h4>Overlay Image</h4>
         <input type="file" accept="image/*" autocomplete=off onchange="loadOverlay(event)">
-        <input type="button" value="Toggle overlay visibility" onclick="toggleOverlay()" style="width: 140px;">
-        <div id="hidden" style="display: none;"></div>
+        <input type="button" value="Toggle overlay visibility" onclick="toggleOverlay()" style="width: 150px;">
       </div>
     </main>
     <footer>
@@ -30,5 +27,6 @@
     <script src="joint.js"></script>
     <script src="bone.js"></script>
     <script src="sketch.js"></script>
+    <script src="utils.js"></script>
   </body>
 </html>

@@ -10,5 +10,4 @@ class Bone {
     strokeWeight(8)
     line(this.jointA.x, this.jointA.y, this.jointB.x, this.jointB.y);
   }
-
 }
