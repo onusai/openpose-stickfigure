@@ -28,22 +28,22 @@
         <div class="canv-controls">
           <p id="hover-info" style="min-height: 1.5em;"></p>
           <label for="offsetX">Offset X</label>
-          <input id="offsetX" name="offsetX" type="range" min="0" max="0" value="0" autocomplete=off oninput="offsetChanged()">
+          <input id="offsetX" name="offsetX" type="range" autocomplete=off oninput="offsetChanged()">
           <label for="offsetY">Offset Y</label>
-          <input id="offsetY" name="offsetY" type="range" min="0" max="0" value="0" autocomplete=off oninput="offsetChanged()">
+          <input id="offsetY" name="offsetY" type="range" autocomplete=off oninput="offsetChanged()">
           <label for="offsetZ">Offset Z</label>
-          <input id="offsetZ" name="offsetZ" type="range" min="0" max="0" value="0" autocomplete=off oninput="offsetChanged()">
+          <input id="offsetZ" name="offsetZ" type="range" autocomplete=off oninput="offsetChanged()">
           <p>Bone Style</p>
           <form style="padding-bottom: 5px;">
-            <input type="radio" name="radio-bone" checked="checked" autocomplete=off onclick="setBoneStyle('ellipse')">
-            <label for="radio-bone-ellipse">Ellipse</label>
+            <input id="radio-ellipse" type="radio" name="radio-bone" checked="checked" autocomplete=off onclick="setBoneStyle('ellipse')">
+            <label for="radio-ellipse">Ellipse</label>
             <input type="radio" name="radio-bone" autocomplete=off  onclick="setBoneStyle('line')">
-            <label for="radio-line-ellipse">Line</label>
+            <label for="radio-line">Line</label>
           </form>
           <label for="bone-width">Bone Width</label>
-          <input id="bone-width" name="bone-width" type="range" min="0.1" max="20" step="0.1" value="8" autocomplete=off oninput="boneWidthChanged()">
+          <input id="bone-width" name="bone-width" type="range" min="0.1" max="20" step="0.1"  autocomplete=off oninput="boneWidthChanged()">
           <label for="joint-diameter">Joint Diameter</label>
-          <input id="joint-diameter" name="joint-diameter" type="range" min="0.1" max="20" step="0.1" value="8" autocomplete=off oninput="jointDiamaterChanged()">
+          <input id="joint-diameter" name="joint-diameter" type="range" min="0.1" max="20" step="0.1" autocomplete=off oninput="jointDiamaterChanged()">
         </div>
       </div>
       <h4>Import / Export JSON</h4>

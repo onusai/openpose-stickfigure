@@ -75,23 +75,7 @@ function setup() {
     bones[bone] = new Bone(joints[b[0]], joints[b[1]], b[2]);
   }
 
-  JointInfoLabel = document.getElementById("hover-info");
-  offsetSliders.x = document.getElementById("offsetX");
-  offsetSliders.y = document.getElementById("offsetY");
-  offsetSliders.z = document.getElementById("offsetZ");
-  boneWidthSlider = document.getElementById("bone-width");
-  jointDiamaterSlider = document.getElementById("joint-diameter");
-
-  offsetSliders.x .min = -canvasSize.x;
-  offsetSliders.x .max = canvasSize.x;
-  offsetSliders.x .value = 0;
-  offsetSliders.y.min = -canvasSize.y;
-  offsetSliders.y.max = canvasSize.y;
-  offsetSliders.y.value = 0;
-  offsetSliders.z.min = -5;
-  offsetSliders.z.max = 5;
-  offsetSliders.z.value = 0;
-  offsetSliders.z.step = 0.1;
+  resetUI();
 }
 
 function draw() {
@@ -179,6 +163,35 @@ function importPose() {
     joints[joint].y = pose[joint][1] + dim.y;
   }
   e.value = "";
+}
+
+function resetUI() {
+  JointInfoLabel = document.getElementById("hover-info");
+  offsetSliders.x = document.getElementById("offsetX");
+  offsetSliders.y = document.getElementById("offsetY");
+  offsetSliders.z = document.getElementById("offsetZ");
+  boneWidthSlider = document.getElementById("bone-width");
+  jointDiamaterSlider = document.getElementById("joint-diameter");
+
+  offsetSliders.x .min = -canvasSize.x;
+  offsetSliders.x .max = canvasSize.x;
+  offsetSliders.x .value = 0;
+  offsetSliders.y.min = -canvasSize.y;
+  offsetSliders.y.max = canvasSize.y;
+  offsetSliders.y.value = 0;
+  offsetSliders.z.min = -5;
+  offsetSliders.z.max = 5;
+  offsetSliders.z.value = 0;
+  offsetSliders.z.step = 0.1;
+
+  boneWidthSlider.value = 8;
+  jointDiamaterSlider.value = 8;
+
+  boneWidthChanged();
+  jointDiamaterChanged();
+
+  document.getElementById('radio-ellipse').checked = true;
+  setBoneStyle('ellipse');
 }
 
 function offsetChanged() {
