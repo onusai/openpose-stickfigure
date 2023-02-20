@@ -2,7 +2,6 @@ class Joint {
 
   static offset = { x: 0, y: 0, z: 0};
   static diameter = 8;
-
   
   static mirrorH = false;
   static mirrorV = false;
@@ -52,7 +51,7 @@ class Joint {
   }
 
   pressed() {
-    if (dist(mouseX, mouseY, this.x, this.y) < Joint.diameter) {
+    if (this.isOver()) {
       this.dragging = true;
       this.offsetX = this._x - mouseX;
       this.offsetY = this._y - mouseY;
@@ -64,10 +63,6 @@ class Joint {
   }
 
   isOver() {
-    if (dist(mouseX, mouseY, this.x, this.y) < Joint.diameter) {
-      return true;
-    } else {
-      return false;
-    }
+    return dist(mouseX, mouseY, this.x, this.y) < Joint.diameter;
   }
 }

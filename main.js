@@ -291,19 +291,11 @@ function poseSelected() {
   resetPose();
 }
 
-function flipH() {
+function flipJoints(axis) {
   let pose = getPose();
+  let i = axis == "h" ? 0 : 1;
   for (joint in pose) {
-    pose[joint][0] *= -1;
-  }
-  resetOffset();
-  setPose(pose);
-}
-
-function flipV() {
-  let pose = getPose();
-  for (joint in pose) {
-    pose[joint][1] *= -1;
+    pose[joint][i] *= -1;
   }
   resetOffset();
   setPose(pose);
