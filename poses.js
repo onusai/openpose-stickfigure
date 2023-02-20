@@ -114,6 +114,29 @@ let poses = {
             "lHeadOuter":[43,-148]
         }
     },
+    "sit-c": {
+        "name": "Sit C",
+        "pose": {
+            "rWrist":[-37,176],
+            "rElbow":[-62,65],
+            "rShoulder":[-68,-45],
+            "rHip":[-38,125],
+            "rKnee":[-150,38],
+            "rAnkle":[-206,203],
+            "lWrist":[35,176],
+            "lElbow":[60,65],
+            "lShoulder":[66,-45],
+            "lHip":[36,125],
+            "lKnee":[148,38],
+            "lAnkle":[204,203],
+            "upperChest":[-1,-41],
+            "nose":[0,-108],
+            "rHeadInner":[-22,-122],
+            "rHeadOuter":[-44,-106],
+            "lHeadInner":[20,-122],
+            "lHeadOuter":[42,-106]
+        }
+    },
     "portrait-a": {
         "name": "Portrait A",
         "pose": {
@@ -161,3 +184,10 @@ let poses = {
         }
     }
 }
+
+/*
+    "": {
+        "name": "",
+        "pose": 
+    },
+*/
