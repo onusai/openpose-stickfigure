@@ -69,7 +69,7 @@ let poses = {
         }
     },
     "sit-a": {
-        "name": "Sit A",
+        "name": "Sit A - indian style",
         "pose": {
             "rWrist":[-34,127],
             "rElbow":[-73,36],
@@ -205,6 +205,10 @@ let poses = {
             "lHeadInner":[23,-143],
             "lHeadOuter":[40,-126]
         }
+    },
+    "lying-a": {
+        "name": "Lying A - on back",
+        "pose": {}
     }
 }
 

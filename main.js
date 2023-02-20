@@ -12,31 +12,31 @@ let offsetSliders = {};
 let boneWidthSlider;
 let jointDiamaterSlider;
 
-let mirrorCenterJoint = "upperChest";
-
 let selectedPose = poses['default'].pose;
 
+// [color, mirrorJoint, mirrorCenterJoint]
 let jointDef = {
-  "rWrist": ["#aaff00", "lWrist"],
-  "rElbow": ["#ffff00", "lElbow"],
-  "rShoulder": [ "#ffaa00", "lShoulder"],
-  "rHip": ["#00ffaa", "lHip"],
-  "rKnee": ["#00ffff", "lKnee"],
-  "rAnkle": ["#00aaff", "lAnkle"],
-  "lWrist": ["#00ff55", "rWrist"],
-  "lElbow": ["#33ff00", "rElbow"],
-  "lShoulder": ["#88ff00", "rShoulder"],
-  "lHip": ["#0055ff", "rHip"],
-  "lKnee": ["#0000ff", "rKnee"],
-  "lAnkle": ["#5500ff", "rAnkle"],
-  "upperChest": ["#ff5500", null],
-  "nose": ["#ff0000", null],
-  "rHeadInner": ["#aa00ff", "lHeadInner"],
-  "rHeadOuter": ["#ff00aa", "lHeadOuter"],
-  "lHeadInner": ["#ff00ff", "rHeadInner"],
-  "lHeadOuter": ["#ff0055", "rHeadOuter"]
+  "rWrist": ["#aaff00", "lWrist", "upperChest"],
+  "rElbow": ["#ffff00", "lElbow", "upperChest"],
+  "rShoulder": [ "#ffaa00", "lShoulder", "upperChest"],
+  "rHip": ["#00ffaa", "lHip", "upperChest"],
+  "rKnee": ["#00ffff", "lKnee", "upperChest"],
+  "rAnkle": ["#00aaff", "lAnkle", "upperChest"],
+  "lWrist": ["#00ff55", "rWrist", "upperChest"],
+  "lElbow": ["#33ff00", "rElbow", "upperChest"],
+  "lShoulder": ["#88ff00", "rShoulder", "upperChest"],
+  "lHip": ["#0055ff", "rHip", "upperChest"],
+  "lKnee": ["#0000ff", "rKnee", "upperChest"],
+  "lAnkle": ["#5500ff", "rAnkle", "upperChest"],
+  "upperChest": ["#ff5500", null, null],
+  "nose": ["#ff0000", null, null],
+  "rHeadInner": ["#aa00ff", "lHeadInner", "nose"],
+  "rHeadOuter": ["#ff00aa", "lHeadOuter", "nose"],
+  "lHeadInner": ["#ff00ff", "rHeadInner", "nose"],
+  "lHeadOuter": ["#ff0055", "rHeadOuter", "nose"]
 }
 
+// [jointA, jointB, color]
 let boneDef = {
   "rWrist": ["rWrist", "rElbow", "#999900"],
   "rElbow": ["rElbow", "rShoulder", "#996600"],
@@ -80,12 +80,11 @@ function setup() {
     bones[bone] = new Bone(joints[b[0]], joints[b[1]], b[2]);
   }
 
-  Joint.mirrorCenterJoint = joints[mirrorCenterJoint];
   for (let joint in jointDef) {
-    let mirrorJoint = jointDef[joint][1];
-    if (mirrorJoint) {
-      joints[joint].mirrorJoint = joints[mirrorJoint];
-    }
+    if (jointDef[joint][1])
+      joints[joint].mirrorJoint = joints[jointDef[joint][1]];
+    if (jointDef[joint][2])
+      joints[joint].mirrorCenterJoint = joints[jointDef[joint][2]];
   }
 
   resetUI();
