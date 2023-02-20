@@ -160,6 +160,29 @@ let poses = {
             "lHeadOuter":[17,-164]
         }
     },
+    "lying-a": {
+        "name": "Lying A - on back",
+        "pose": {
+            "rWrist":[-1,-137],
+            "rElbow":[-87,-107],
+            "rShoulder":[-30,-29],
+            "rHip":[-31,109],
+            "rKnee":[-158,19],
+            "rAnkle":[-104,204],
+            "lWrist":[18,-127],
+            "lElbow":[113,-135],
+            "lShoulder":[57,-35],
+            "lHip":[61,109],
+            "lKnee":[188,19],
+            "lAnkle":[134,204],
+            "upperChest":[15,-21],
+            "nose":[10,-80],
+            "rHeadInner":[-9,-99],
+            "rHeadOuter":[-29,-85],
+            "lHeadInner":[26,-99],
+            "lHeadOuter":[45,-86]
+        }
+    },
     "portrait-a": {
         "name": "Portrait A",
         "pose": {
@@ -204,29 +227,6 @@ let poses = {
             "rHeadOuter":[-38,-126],
             "lHeadInner":[23,-143],
             "lHeadOuter":[40,-126]
-        }
-    },
-    "lying-a": {
-        "name": "Lying A - on back",
-        "pose": {
-            "rWrist":[-1,-137],
-            "rElbow":[-87,-107],
-            "rShoulder":[-30,-29],
-            "rHip":[-31,109],
-            "rKnee":[-158,19],
-            "rAnkle":[-104,204],
-            "lWrist":[18,-127],
-            "lElbow":[113,-135],
-            "lShoulder":[57,-35],
-            "lHip":[61,109],
-            "lKnee":[188,19],
-            "lAnkle":[134,204],
-            "upperChest":[15,-21],
-            "nose":[10,-80],
-            "rHeadInner":[-9,-99],
-            "rHeadOuter":[-29,-85],
-            "lHeadInner":[26,-99],
-            "lHeadOuter":[45,-86]
         }
     }
 }

@@ -20,7 +20,7 @@ class Joint {
     this._z = 0;
     this.dragging = false;
     this.mirrorJoint = null;
-    this.mirrorCenterJoint = null;
+    this.mirrorAnchor = null;
   }
 
   update() {
@@ -31,15 +31,15 @@ class Joint {
       if (!this.mirrorJoint) return;
 
       if (Joint.mirrorH && Joint.mirrorV) {
-        this.mirrorJoint._x = this.mirrorCenterJoint._x-(this._x - this.mirrorCenterJoint._x);
-        this.mirrorJoint._y = this.mirrorCenterJoint._y-(this._y - this.mirrorCenterJoint._y);
+        this.mirrorJoint._x = this.mirrorAnchor._x-(this._x - this.mirrorAnchor._x);
+        this.mirrorJoint._y = this.mirrorAnchor._y-(this._y - this.mirrorAnchor._y);
       }
       else if (Joint.mirrorH) {
-        this.mirrorJoint._x = this.mirrorCenterJoint._x-(this._x - this.mirrorCenterJoint._x);
+        this.mirrorJoint._x = this.mirrorAnchor._x-(this._x - this.mirrorAnchor._x);
         this.mirrorJoint._y = this._y;
       }
       else if (Joint.mirrorV) {
-        this.mirrorJoint._y = this.mirrorCenterJoint._y-(this._y - this.mirrorCenterJoint._y);
+        this.mirrorJoint._y = this.mirrorAnchor._y-(this._y - this.mirrorAnchor._y);
         this.mirrorJoint._x = this._x;
       }
     }

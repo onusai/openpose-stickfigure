@@ -14,7 +14,7 @@ let jointDiamaterSlider;
 
 let selectedPose = poses['default'].pose;
 
-// [color, mirrorJoint, mirrorCenterJoint]
+// [color, mirrorJoint, mirrorAnchor]
 let jointDef = {
   "rWrist": ["#aaff00", "lWrist", "upperChest"],
   "rElbow": ["#ffff00", "lElbow", "upperChest"],
@@ -84,7 +84,7 @@ function setup() {
     if (jointDef[joint][1])
       joints[joint].mirrorJoint = joints[jointDef[joint][1]];
     if (jointDef[joint][2])
-      joints[joint].mirrorCenterJoint = joints[jointDef[joint][2]];
+      joints[joint].mirrorAnchor = joints[jointDef[joint][2]];
   }
 
   resetUI();
