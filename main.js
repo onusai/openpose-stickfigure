@@ -14,7 +14,28 @@ let jointDiamaterSlider;
 
 let mirrorCenterJoint = "upperChest";
 
-let jointDef = poses["default"];
+let selectedPose = poses['default'].pose;
+
+let jointDef = {
+  "rWrist": ["#aaff00", "lWrist"],
+  "rElbow": ["#ffff00", "lElbow"],
+  "rShoulder": [ "#ffaa00", "lShoulder"],
+  "rHip": ["#00ffaa", "lHip"],
+  "rKnee": ["#00ffff", "lKnee"],
+  "rAnkle": ["#00aaff", "lAnkle"],
+  "lWrist": ["#00ff55", "rWrist"],
+  "lElbow": ["#33ff00", "rElbow"],
+  "lShoulder": ["#88ff00", "rShoulder"],
+  "lHip": ["#0055ff", "rHip"],
+  "lKnee": ["#0000ff", "rKnee"],
+  "lAnkle": ["#5500ff", "rAnkle"],
+  "upperChest": ["#ff5500", null],
+  "nose": ["#ff0000", null],
+  "rHeadInner": ["#aa00ff", "lHeadInner"],
+  "rHeadOuter": ["#ff00aa", "lHeadOuter"],
+  "lHeadInner": ["#ff00ff", "rHeadInner"],
+  "lHeadOuter": ["#ff0055", "rHeadOuter"]
+}
 
 let boneDef = {
   "rWrist": ["rWrist", "rElbow", "#999900"],
@@ -48,7 +69,8 @@ function setup() {
 
   for (let joint in jointDef) {
     let j = jointDef[joint];
-    joints[joint] = new Joint(j[0], j[1], j[2]);
+    let jPos = selectedPose[joint];
+    joints[joint] = new Joint(jPos[0], jPos[1], j[0]);
     joints[joint].x += canvasSize.x/2;
     joints[joint].y += canvasSize.y/2;
   }
@@ -60,7 +82,7 @@ function setup() {
 
   Joint.mirrorCenterJoint = joints[mirrorCenterJoint];
   for (let joint in jointDef) {
-    let mirrorJoint = jointDef[joint][3];
+    let mirrorJoint = jointDef[joint][1];
     if (mirrorJoint) {
       joints[joint].mirrorJoint = joints[mirrorJoint];
     }
@@ -107,7 +129,7 @@ function mouseReleased() {
 }
 
 function resizeCanv() {
-  let pose = getPose(true);
+  let pose = getPose();
   canvasSize = {
     x: document.getElementById("iwidth").value,
     y: document.getElementById("iheight").value
@@ -121,7 +143,7 @@ function resizeCanv() {
 
 function resetPose() {
   resetOffset();
-  setPose(jointDef);
+  setPose(selectedPose);
 }
 
 function loadOverlay(event) {
@@ -142,27 +164,18 @@ function toggleOverlay() {
   overlayEnabled = !overlayEnabled;
 }
 
-function round1d(value) {
-  return Math.round(value * 10) / 10;
-}
-
-function getPose(raw=false, color=false, formatted=false) {
+function getPose() {
   let pose = {};
   for (let jointName in joints) {
       let joint = joints[jointName];
       let dim = { x: canvasSize.x/2, y: canvasSize.y/2};
-      if (color)
-        pose[jointName] = [round1d(joint.x-dim.x), round1d(joint.y-dim.y), jointDef[jointName][2]];
-      else
-        pose[jointName] = [round1d(joint.x-dim.x), round1d(joint.y-dim.y)];
+      pose[jointName] = [round(joint.x-dim.x), round(joint.y-dim.y)];
   }
-  if (raw) return pose;
-  if (formatted) return JSON.stringify(pose, null, 2);
-  return JSON.stringify(pose);
+  return pose;
 }
 
 function exportPose() {
-  let pose = getPose(true);
+  let pose = getPose();
   let out = "";
   let i = 0;
   for (joint in pose) {
@@ -217,6 +230,14 @@ function resetUI() {
 
   document.getElementById('radio-ellipse').checked = true;
   setBoneStyle('ellipse');
+
+  let poseSelect = document.getElementById("pose-presets");
+  for (pose in poses) {
+    let option = document.createElement("option");
+    option.value = pose;
+    option.text = poses[pose].name;
+    poseSelect.add(option);
+  }
 }
 
 function offsetChanged() {
@@ -264,6 +285,6 @@ function mirrorJointsChanged(axis) {
 
 function poseSelected() {
   let e = document.getElementById("pose-presets");
-  jointDef = poses[e.value];
+  selectedPose = poses[e.value].pose;
   resetPose();
 }
