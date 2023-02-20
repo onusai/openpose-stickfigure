@@ -23,7 +23,7 @@ let poses = {
         }
     },
     "tpose1": {
-        "name": "T-Pose 1",
+        "name": "T-Pose A",
         "pose": {
             "rWrist": [-164, -99],
             "rElbow": [-89, -124], 
@@ -46,7 +46,7 @@ let poses = {
         }
     },
     "tpose2": {
-        "name": "T-Pose 1",
+        "name": "T-Pose B",
         "pose": {
             "rWrist": [-184, -90],
             "rElbow": [-124, -114], 
@@ -68,8 +68,8 @@ let poses = {
             "lHeadOuter": [20, -189]
         }
     },
-    "indian": {
-        "name": "Indian Style",
+    "sit-a": {
+        "name": "Sit A",
         "pose": {
             "rWrist":[-34,127],
             "rElbow":[-73,36],
@@ -89,6 +89,29 @@ let poses = {
             "rHeadOuter":[-36,-129],
             "lHeadInner":[17,-144],
             "lHeadOuter":[34,-129]
+        }
+    },
+    "sit-b": {
+        "name": "Sit B",
+        "pose": {
+            "rWrist":[-68,-166],
+            "rElbow":[-123,-98],
+            "rShoulder":[-43,-84],
+            "rHip":[-3,66],
+            "rKnee":[-138,91],
+            "rAnkle":[56,159],
+            "lWrist":[142,110],
+            "lElbow":[116,7],
+            "lShoulder":[42,-83],
+            "lHip":[72,78],
+            "lKnee":[55,-36],
+            "lAnkle":[14,181],
+            "upperChest":[-4,-85],
+            "nose":[4,-153],
+            "rHeadInner":[-10,-172],
+            "rHeadOuter":[-29,-162],
+            "lHeadInner":[24,-165],
+            "lHeadOuter":[43,-148]
         }
     }
 }
