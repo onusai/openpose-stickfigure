@@ -296,6 +296,7 @@ function flipH() {
   for (joint in pose) {
     pose[joint][0] *= -1;
   }
+  resetOffset();
   setPose(pose);
 }
 
@@ -304,5 +305,6 @@ function flipV() {
   for (joint in pose) {
     pose[joint][1] *= -1;
   }
+  resetOffset();
   setPose(pose);
 }
