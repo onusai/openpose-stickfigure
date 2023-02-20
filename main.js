@@ -131,8 +131,8 @@ function mouseReleased() {
 function resizeCanv() {
   let pose = getPose();
   canvasSize = {
-    x: document.getElementById("iwidth").value,
-    y: document.getElementById("iheight").value
+    x: Math.max(64, document.getElementById("iwidth").value),
+    y: Math.max(64, document.getElementById("iheight").value)
   }
   resizeCanvas(canvasSize.x, canvasSize.y);
   resetOffset();
