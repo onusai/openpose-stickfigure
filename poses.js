@@ -2,24 +2,24 @@ let poses = {
     "default": {
         "name": "Default",
         "pose": {
-            "rWrist": [-191, -100],
-            "rElbow": [-110, -88], 
-            "rShoulder": [-51, -126],
-            "rHip": [-50, 8], 
-            "rKnee": [-40, 113],
-            "rAnkle": [-42, 239], 
-            "lWrist": [139, -25],
-            "lElbow": [66, -60], 
-            "lShoulder": [22, -126],
-            "lHip": [16, 9], 
-            "lKnee": [8, 118],
-            "lAnkle": [57, 215], 
-            "upperChest": [-15, -130],
-            "nose": [-10, -168], 
-            "rHeadInner": [-21, -191],
-            "rHeadOuter": [-41, -183], 
-            "lHeadInner": [4, -189],
-            "lHeadOuter": [24, -181]
+            "rWrist":[-191,-100],
+            "rElbow":[-110,-88],
+            "rShoulder":[-51,-126],
+            "rHip":[-50,8],
+            "rKnee":[-40,113],
+            "rAnkle":[-41,221],
+            "lWrist":[139,-25],
+            "lElbow":[66,-60],
+            "lShoulder":[22,-126],
+            "lHip":[16,9],
+            "lKnee":[8,118],
+            "lAnkle":[57,215],
+            "upperChest":[-15,-130],
+            "nose":[-10,-168],
+            "rHeadInner":[-21,-191],
+            "rHeadOuter":[-41,-183],
+            "lHeadInner":[4,-189],
+            "lHeadOuter":[24,-181]
         }
     },
     "tpose1": {
@@ -112,6 +112,29 @@ let poses = {
             "rHeadOuter":[-29,-162],
             "lHeadInner":[24,-165],
             "lHeadOuter":[43,-148]
+        }
+    },
+    "portrait-a": {
+        "name": "Portrait A",
+        "pose": {
+            "rWrist":[31,-193],
+            "rElbow":[-86,-202],
+            "rShoulder":[-26,-68],
+            "rHip":[-73,186],
+            "rKnee":[-71,329],
+            "rAnkle":[-71,285],
+            "lWrist":[-15,-188],
+            "lElbow":[92,-227],
+            "lShoulder":[66,-76],
+            "lHip":[28,173],
+            "lKnee":[14,340],
+            "lAnkle":[17,302],
+            "upperChest":[22,-81],
+            "nose":[-5,-126],
+            "rHeadInner":[-18,-165],
+            "rHeadOuter":[-31,-149],
+            "lHeadInner":[-1,-170],
+            "lHeadOuter":[34,-172]
         }
     }
 }

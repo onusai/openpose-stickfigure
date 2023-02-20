@@ -186,6 +186,7 @@ function exportPose() {
   out = "{" + out.substring(1, out.length-2) + "}";
   let e = document.getElementById("pose-json");
   e.value = out;
+  console.log(JSON.stringify(getPose()).replaceAll('],"', '],\n"').replaceAll('{"', '{\n"').replaceAll(']}', ']\n}'));
 }
 
 function importPose() {
