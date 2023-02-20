@@ -291,3 +291,19 @@ function poseSelected() {
   selectedPose = poses[e.value].pose;
   resetPose();
 }
+
+function flipH() {
+  let pose = getPose();
+  for (joint in pose) {
+    pose[joint][0] *= -1;
+  }
+  setPose(pose);
+}
+
+function flipV() {
+  let pose = getPose();
+  for (joint in pose) {
+    pose[joint][1] *= -1;
+  }
+  setPose(pose);
+}

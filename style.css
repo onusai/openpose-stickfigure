@@ -26,6 +26,7 @@ footer {
     display: flex;
     flex-direction: column;
     padding: 10px;
+    font-size: 0.9em;
 }
 
 footer {

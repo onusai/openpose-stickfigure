@@ -31,6 +31,10 @@
           <select id="pose-presets" onchange="poseSelected()" autocomplete=off>
           </select>
           <input type="button" value="Reset Pose"  onclick="resetPose()">
+          <div style="display: flex; gap: 5px;">
+            <input type="button" value="Flip H" style="flex-grow: 1;" onclick="flipH()">
+            <input type="button" value="Flip V" style="flex-grow: 1;" onclick="flipV()">
+          </div>
           <label for="offsetX" style="font-size: 0.9em">Offset X</label>
           <input id="offsetX" name="offsetX" type="range" autocomplete=off oninput="offsetChanged()">
           <label for="offsetY" style="font-size: 0.9em">Offset Y</label>
